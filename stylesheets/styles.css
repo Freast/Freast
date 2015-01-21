@@ -338,6 +338,7 @@ svg:not(:root) {
    ========================================================================== */
 /*
  * Addresses margin not present in IE6/7/8/9, S5, O11
+
  */
 figure {
   margin: 0;
@@ -581,7 +582,7 @@ blockquote {
   font-style: italic;
 }
 
-code {
+/*code {
   font-family: "Lucida Sans", Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
   font-size: 13px;
   color: #efefef;
@@ -596,7 +597,7 @@ code {
   -khtml-border-radius: 2px;
   border-radius: 2px;
 }
-
+*/
 pre {
   padding: 8px 15px;
   background: #333333;
@@ -792,7 +793,7 @@ header p {
 }
 
 section {
-  width: 590px;
+  width: 700px;
   padding: 30px 30px 50px 30px;
   margin: 20px 0;
   margin-top: 190px;
