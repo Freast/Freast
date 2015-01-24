@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Word Ladder</h2>
+		<p>Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:</p>
+		<ol>
+			<li>Only one letter can be changed at a time</li>
+			<li>Each intermediate word must exist in the dictionary</li>
+		</ol>
+		<p>For example,</p>
+		<p>Given:</p>
+		<pre>start = "hit"
+end = "cog"
+dict = ["hot","dot","dog","lot","log"]</pre>
+		<p>As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",</p>
+		<p>return its length 5.</p>
+		<h4>Note:</h4>
+		<ul>
+			<li>Return 0 if there is no such transformation sequence.</li>
+			<li>All words have the same length.</li>
+			<li>All words contain only lowercase alphabetic characters.</li>
+		</ul>
+		<a href="https://oj.leetcode.com/problems/word-ladder/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+class Solution {
+public:
+    int ladderLength(string start, string end, unordered_set<string> &dict) {
+        int ans=0;
+        unordered_set<string> previousNodes;
+        vector<unordered_set<string>> nodeLevel(2);
+        int curr = 0;
+        nodeLevel[curr].insert(start);
+        ans++;
+        unordered_set<string>::iterator it;
+        while(!nodeLevel[curr].empty()){
+            for(it=nodeLevel[curr].begin();it!=nodeLevel[curr].end();it++){
+                for(int i=0;i<it->size();i++){
+                    string node(*it);
+                    for(node[i]='a';node[i]<'z';node[i]++){
+                        if(node == end)
+                            return ans+1;
+                        if(previousNodes.count(node)||nodeLevel[curr].count(node)||node[i] == (*it)[i]||!dict.count(node))
+                            continue;
+                        nodeLevel[!curr].insert(node);
+                    }
+                }
+                previousNodes.insert(*it);
+            }
+            
+            ans++;
+            nodeLevel[curr].clear();
+            curr=!curr;
+        }
+        
+        return 0;
+    }
+};
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

@@ -600,7 +600,7 @@ blockquote {
 */
 pre {
   padding: 8px 15px;
-  background: #333333;
+  background: #f5f5f5;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   -o-border-radius: 3px;
@@ -793,7 +793,7 @@ header p {
 }
 
 section {
-  width: 700px;
+  width: 800px;
   padding: 30px 30px 50px 30px;
   margin: 20px 0;
   margin-top: 190px;

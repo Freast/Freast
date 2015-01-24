@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Letter Combinations of a Phone Number</h2>
+		<p>Given a digit string, return all possible letter combinations that the number could represent.</p>
+		<p>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+	<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png">	
+		<pre>Input:Digit string "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].</pre>
+		<h4>Note:</h4><p>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+		<a href="https://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> res=new ArrayList<String>();
+        //if(digits == null || digits.length()==0)
+           // return res;
+        int len=digits.length();
+        String[] map = new String[10];
+        map[0]="";
+        map[1]="";
+        map[2]="abc";
+        map[3]="def";
+        map[4]="ghi";
+        map[5]="jkl";
+        map[6]="mno";
+        map[7]="pqrs";
+        map[8]="tuv";
+        map[9]="wxyz";
+        char[] str = new char[digits.length()];
+        getCombinations(0,digits, str,map,res);
+        return res;
+        
+    }
+    
+    public void getCombinations(int index, String digits, char[] str, String[] map, List<String> res){
+        if(index == digits.length()){
+            res.add(new String(str));
+            return;
+        }
+        
+        char ch=digits.charAt(index);
+        for(int i=0;i<map[ch-'0'].length();i++){
+            str[index]=map[ch-'0'].charAt(i);
+            getCombinations(index+1,digits,str,map,res);
+        }
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

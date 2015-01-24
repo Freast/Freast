@@ -34,15 +34,46 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Remove Duplicates from Sorted List</h2>
+		<p>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
+		<p>For example,</p>
+		<p>Given 1->1->2, return 1->2.</p>
+		<p>Given 1->1->2->3->3, return 1->2->3.</p>
+		<a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null)
+            return head;
+        ListNode result = new ListNode(head.val),tmp, next0 ;
+        next0 = head.next;
+        tmp = result;
+        while(head!=null){
+            if(next0 != null){
+                if(head.val != next0.val)
+                {
+                    tmp.next = new ListNode(next0.val);
+                    tmp = tmp.next;
+                }
+            }
+            head = next0;
+            if(head != null)
+                next0=head.next;
+        }
+        return result;
+    }
+}
 </script>
 </section>
 <footer>

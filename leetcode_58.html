@@ -34,15 +34,34 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Length of Last Word</h2>
+		<p>Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.</p>
+		<p>If the last word does not exist, return 0.</p>
+		<p><b>Note: </b>A word is defined as a character sequence consists of non-space characters only.</p>
+		<p>For example, </p>
+		<p>Given s = "Hello World",</p>	
+		<p>return 5.</p>	
+		<a href="https://oj.leetcode.com/problems/length-of-last-word/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        if (s==null)
+            return 0;
+        int len=0, l=0;
+        for(int i=0;i<s.length();i++){
+            while(i<s.length()&&s.charAt(i)==' '){
+                i++;
+                len=0;
+            }
+            if(i<s.length() && s.charAt(i)!=' '){
+                len++;
+            }
+            if(i<s.length())
+                l=len;
+        }
+        return l;
+    }
+}
 </script>
 </section>
 <footer>

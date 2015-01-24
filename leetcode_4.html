@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Median of Two Sorted Arrays</h2>
+		<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+		<a href="https://oj.leetcode.com/problems/median-of-two-sorted-arrays/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public double findMedianSortedArrays(int A[], int B[]) {
+        int total = A.length + B.length;
+        int m = A.length, n = B.length;
+        int mid = total/2;
+        if(total%2 == 1){
+            return findMedian(A, m, B, n, mid+1);
+        } else {
+            return (double)(((double)findMedian(A,m,B,n,mid) + (double)findMedian(A,m,B,n,mid+1))/2);
+        }
+    }
+    public double findMedian(int A[], int m, int B[], int n, int k){
+        if(m >n)
+            return findMedian(B,n,A,m,k);
+        if (m == 0)
+            return B[k-1];
+        if(k <= 1){
+            if(A.length == 0)
+                return B[0];
+            else if (B.length == 0)
+                return A[0];
+
+            return Math.min(A[0], B[0]);
+            
+        }
+        int pa = Math.min(k/2, m);
+        int pb = k-pa;
+        if(A[pa-1] < B[pb-1]){
+            int[] A2 = new int[m-pa];
+            for(int i = 0;i<m-pa;i++){
+                A2[i] = A[pa+i];
+            }
+            return findMedian(A2,m-pa,B, n, k-pa);
+        } else if(A[pa-1] > B[pb-1])
+        {
+            int[] B2 = new int[n-pb];
+            for(int i = 0;i<n-pb;i++){
+                B2[i] = B[pb+i];
+            }
+            return findMedian(A,m,B2,n-pb,k-pb);
+        } else {
+            return A[pa-1];
+        }
+        
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

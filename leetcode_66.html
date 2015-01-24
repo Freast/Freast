@@ -34,15 +34,30 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Plus One</h2>
+		<p>Given a non-negative number represented as an array of digits, plus one to the number.</p>
+		<p>The digits are stored such that the most significant digit is at the head of the list.</p>
+		<a href="https://oj.leetcode.com/problems/plus-one/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        int plus =1, l=digits.length;
+        
+        for(int i=0;i<digits.length;i++){
+            int num = plus + digits[l-1-i];
+            plus = num/10;
+            digits[l-1-i] = num%10;
+        }
+        if(plus == 0)
+            return digits;
+        else {
+            int[] result =  new int[digits.length+1];
+            result[0] = plus;
+            System.arraycopy(digits, 0, result, 1, digits.length);
+            return result;
+        }
+    }
+}
 </script>
 </section>
 <footer>

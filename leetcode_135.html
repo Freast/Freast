@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script type="text/javascript" src="scripts/shCore.js"></script>
-	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 	<!--sytax highlighter-->
@@ -34,15 +34,45 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
-<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+		<h2>Candy</h2>
+		<p>There are N children standing in a line. Each child is assigned a rating value.</p>
+		<p>You are giving candies to these children subjected to the following requirements:</p>
+		<ul>
+			<li>Each child must have at least one candy.</li>
+			<li>Children with a higher rating get more candies than their neighbors.</li>
+		</ul>
+		<p>What is the minimum candies you must give?</p>
+		<a href="https://oj.leetcode.com/problems/candy/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: c++;"><![CDATA[
+class Solution {
+public:
+    int candy(vector<int> &ratings) {
+        int height = 1;
+        int ans = 0;
+        if(ratings.size()<=1)
+            return ratings.size();
+            
+        vector<int> candy(ratings.size(),1);
+        for(int i=1;i<ratings.size();i++){
+            if(ratings[i]>ratings[i-1])
+                candy[i]=max(++height, candy[i]);
+            else 
+                height=1;
+        }
+        
+        height =1;
+        
+        for(int i=ratings.size()-1;i>0;i--){
+            if(ratings[i]<ratings[i-1])
+                candy[i-1]=max(++height, candy[i-1]);
+            else 
+                height=1;
+        }
+        for(int i=0;i<candy.size();i++)
+            ans+=candy[i];
+        return ans;
+    }
+};
 </script>
 </section>
 <footer>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Merge k Sorted Lists</h2>
+		<p>Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.</p>
+		<a href="https://oj.leetcode.com/problems/merge-k-sorted-lists/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode mergeKLists(List<ListNode> lists) {
+        if(lists.size() ==0 || lists == null)
+            return null;
+        int k = lists.size();
+        return merge(0,k-1,lists);
+    }
+    
+    public ListNode merge(int a, int b, List<ListNode> lists){
+        if(a ==b)
+            return lists.get(a);
+        int mid = (a+b)/2;
+        ListNode head1, head2;
+        head1= merge(a,mid,lists);
+        head2 = merge(mid+1,b,lists);
+        return mergeList(head1, head2);
+    }
+    
+    public ListNode mergeList(ListNode head1, ListNode head2){
+        ListNode head = null;
+        if(head1 == null)
+            return head2;
+        if(head2 == null)
+            return head1;
+        
+            
+        ListNode node1=head1, node2 = head2;
+        
+        if(head1.val<=head2.val){
+            head = head1;
+            node1 = node1.next;
+        }
+        else {
+            head = head2;
+            node2 = node2.next;
+        }
+        ListNode node = head;
+        while(node1!=null && node2 != null ){
+            if(node1.val<=node2.val){
+                node.next = node1;
+                node1 = node1.next;
+                node = node.next;
+            } else {
+                node.next = node2;
+                node2=node2.next;
+                node = node.next;
+            }
+        }
+        
+        if(node2 == null){
+            while(node1!=null){
+                node.next = node1;
+                node1 = node1.next;
+                node = node.next;
+            }
+        } else if(node1 == null){
+            while(node2!=null){
+                node.next=node2;
+                node2=node2.next;
+                node=node.next;
+            }
+        }
+        
+        return head;
+    }
+    
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

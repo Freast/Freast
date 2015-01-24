@@ -34,15 +34,44 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Binary Tree Preorder Traversal</h2>
+		<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
+		<p>For example:</p>
+		<p>Given binary tree {1,#,2,3},</p>
+		<pre>   1
+    \
+     2
+    /
+   3</pre>
+		<p>return [1,2,3].</p>
+		<p><b>Note: </b>Recursive solution is trivial, could you do it iteratively?</p>
+		<a href="https://oj.leetcode.com/problems/binary-tree-preorder-traversal/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        
+        List<Integer> res =new ArrayList<Integer>();
+        search(root, res);
+        return res;
+    }
+    
+    public void search(TreeNode root, List<Integer> res){
+        if(root==null)
+            return;
+        res.add(root.val);
+        search(root.left,res);
+        search(root.right,res);
+    }
+}
 </script>
 </section>
 <footer>

@@ -34,15 +34,38 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
+		<h2>Excel Sheet Column Title</h2>
+		<p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
+		<p>For example:</p>
+		<pre>    1 -> A
+    2 -> B
+    3 -> C
+    ...
+    26 -> Z
+    27 -> AA
+    28 -> AB </pre>
 		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h4>Credits:</h4><p>Special thanks to <a href="https://oj.leetcode.com/discuss/user/ifanchu">@ifanchu</a> for adding this problem and creating all test cases.</p>
+		<a href="https://oj.leetcode.com/problems/excel-sheet-column-title/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public String convertToTitle(int n) {
+        StringBuilder s=new StringBuilder();
+        int tmp=n;
+        while(tmp>0){
+            int l=tmp%26;
+            tmp/=26;
+            if(l==0)
+                s.append('Z');
+            else 
+                s.append((char)(l+'A'-1));
+            if(l==0)
+                tmp--;
+        }
+        
+        return s.reverse().toString();
+    }
+}
 </script>
 </section>
 <footer>

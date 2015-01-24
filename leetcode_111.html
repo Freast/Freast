@@ -34,15 +34,39 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Minimum Depth of Binary Tree</h2>
+		<p>Given a binary tree, find its minimum depth.</p>
+		<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+		<a href="https://oj.leetcode.com/problems/minimum-depth-of-binary-tree/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null)
+            return 0;
+        int d1, d2;
+        if(root.left==null)
+            return 1+minDepth(root.right);
+        else if(root.right==null)
+            return 1+minDepth(root.left);
+        else {
+            d1 = minDepth(root.left) +1;
+            d2 = minDepth(root.right) +1;
+            if(d2<d1)
+                return d2;
+            else 
+                return d1;
+        }
+    }
+}
 </script>
 </section>
 <footer>

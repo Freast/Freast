@@ -34,15 +34,45 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>First Missing Positive</h2>
+		<p>Given an unsorted integer array, find the first missing positive integer.</p>
+		<p>For example,</p>
+		<p>Given [1,2,0] return 3,</p>
+		<p>and [3,4,-1,1] return 2.</p>
+		<p>Your algorithm should run in O(n) time and uses constant space.</p>
+		<a href="https://oj.leetcode.com/problems/first-missing-positive/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+        int res=1;
+        if(A.length==0)
+            return 1;
+        int pos=0;
+        while(pos<A.length){
+            int tmp=A[pos];
+            if(tmp>=1 && tmp<=A.length && tmp!=pos+1 && A[pos]!=A[A[pos]-1]){
+                int j=tmp-1;
+                int tmp2 = A[pos];
+                A[pos]=A[j];
+                A[j]=tmp2;
+            } else 
+                pos++;
+        }
+        boolean flag=false;
+    
+        for(int i=0;i<A.length;i++){
+            if(A[i]!=i+1){
+                res=i+1;
+                flag=true;
+                break;
+            }   
+        }
+        if(flag)
+            return res;
+        else 
+            return A.length+1;
+    }
+}
 </script>
 </section>
 <footer>

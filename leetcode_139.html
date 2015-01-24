@@ -34,15 +34,39 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Word Break</h2>
+		<p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
+		<p>For example, given</p>
+		<p>s = "leetcode",</p>
+		<p>dict = ["leet", "code"].</p>
+		<p>Return true because "leetcode" can be segmented as "leet code".</p>
+		<a href="https://oj.leetcode.com/problems/word-break/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
+        int len=s.length();
+        
+        if(s==null || len == 0)
+            return true;
+        boolean[] d = new boolean[len];
+        for(int i=0;i<len;i++)
+            d[i]=false;
+            
+        for(int i=0;i<len;i++){
+            if(dict.contains(s.substring(0,i+1))){
+                d[i]=true;
+            } else {
+                for(int j=0;j<i;j++){
+                    if(d[j]){
+                        if(dict.contains(s.substring(j+1,i+1)))
+                            d[i]=true;
+                    }
+                }
+            }
+        }
+        return d[len-1];
+    }
+}
 </script>
 </section>
 <footer>

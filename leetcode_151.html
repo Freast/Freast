@@ -34,15 +34,42 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Reverse Words in a String</h2>
+		<p>Given an input string, reverse the string word by word.</p>
+		<p>For example,</p>
+		<p>Given s = "the sky is blue",</p>
+		<p>return "blue is sky the".</p>
+		<p><a href="https://oj.leetcode.com/problems/reverse-words-in-a-string/#">click to show clarification.</a></p>
+		<a href="https://oj.leetcode.com/problems/reverse-words-in-a-string/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public String reverseWords(String s) {
+        StringBuilder rs = new StringBuilder();
+        int i=0;
+        for(i=s.length()-1;i>=0;i--){
+            while(i>=0 && s.charAt(i) == ' '){
+                i--;
+            }
+            if(i>=0){
+                int begin=i, end=i;
+                while(i>=0 && s.charAt(i)!=' '){
+                    i--;
+                } 
+                begin=i+1;
+                rs.append(s.substring(begin,end+1));
+                while(i>=0 && s.charAt(i) == ' '){
+                    i--;
+                }
+                if(i>=0){
+                    rs.append(" ");
+                
+                    i++;
+                }
+            }
+        }
+        return rs.toString();
+    }
+}
 </script>
 </section>
 <footer>

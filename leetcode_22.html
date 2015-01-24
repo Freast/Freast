@@ -34,15 +34,39 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Generate Parentheses</h2>
+		<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses..</p>
+		<p>For example, given n = 3, a solution set is:</p>
+		<p style="color:#c7254e">"((()))", "(()())", "(())()", "()(())", "()()()"</p>
+		<a href="https://oj.leetcode.com/problems/generate-parentheses/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res=new ArrayList<String>();
+        char[] str = new char[n*2];
+        //int index = 0;
+        
+        if(n>0)
+            generate(res,str,n,n,0);
+        return res;
+    }
+    
+    public void generate(List<String> res, char[] str, int m, int n,int index){
+        if(m==0 && n==0){
+            res.add(new String(str));
+        }
+        
+        if(m!=0){
+            str[index]='(';
+            generate(res, str, m-1, n,index+1);
+        }
+        if(n>m && n!=0){
+            str[index]=')';
+            generate(res, str, m, n-1,index+1);
+        }
+        
+    }
+}
 </script>
 </section>
 <footer>

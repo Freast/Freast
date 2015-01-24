@@ -34,15 +34,46 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Rotate List</h2>
+		<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
+		<p>For example:</p>
+		<p>Given 1->2->3->4->5->NULL and k = 2,</p>
+		<p>return 4->5->1->2->3->NULL.</p>
+		<a href="https://oj.leetcode.com/problems/rotate-list/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode rotateRight(ListNode head, int n) {
+        ListNode tmp=head, tail=null;
+        int cnt=0;
+        if(head==null || n==0 || head.next == null)
+            return head;
+        while(tmp!=null){
+            tail=tmp;
+            tmp=tmp.next;
+            cnt++;
+        }
+        n%=cnt;
+        tmp=head;
+        for (int i=0;i<cnt-n-1;i++){
+            tmp=tmp.next;
+        }
+        tail.next=head;
+        head=tmp.next;
+        tmp.next=null;       
+        return head;
+    }
+}
 </script>
 </section>
 <footer>

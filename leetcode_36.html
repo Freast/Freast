@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Valid Sudoku</h2>
+		<p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules.</a></p>
+		<p>The Sudoku board could be partially filled, where empty cells are filled with the character '.'.</p>
+		<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png">	
+		<p style="font-size:70%">A partially filled sudoku which is valid.</p>
+		<h4>Note:</h4><p>A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p>
+		<a href="https://oj.leetcode.com/problems/valid-sudoku/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        boolean flag=true;
+        int[] bucket = new int[10];
+        
+        for(int i=0;i<9;i++){
+            for(int k=0;k<10;k++)
+                bucket[k]=0;
+            for(int j=0;j<9;j++){
+                if(board[i][j] != '.'){
+                    if(bucket[board[i][j]-'0']==0)
+                        bucket[board[i][j]-'0']++;
+                    else 
+                        return false;
+                }
+            }
+        }
+        
+        for(int i=0;i<9;i++){
+            for(int k=0;k<10;k++)
+                bucket[k]=0;
+            for(int j=0;j<9;j++){
+                if(board[j][i] != '.'){
+                    if(bucket[board[j][i]-'0']==0)
+                        bucket[board[j][i]-'0']++;
+                    else 
+                        return false;
+                }
+            }
+        }
+        
+        for(int i=0;i<9;i+=3){
+            for(int j=0;j<9;j+=3){
+                for (int k=0;k<10;k++)
+                    bucket[k]=0;
+                for(int a=0;a<3;a++){
+                    for(int b=0;b<3;b++){
+                        if(board[i+a][j+b] != '.')
+                            if(bucket[board[i+a][j+b]-'0']==0)
+                                bucket[board[i+a][j+b]-'0']++;
+                            else 
+                                return false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

@@ -34,15 +34,30 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Sqrt(x)</h2>
+		<p>Implement int sqrt(int x).</p>
+		<p>Compute and return the square root of x.</p>
+		<a href="https://oj.leetcode.com/problems/sqrtx/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int sqrt(int x) {
+        if(x<=1)
+            return x;
+        int left=0, right=x;
+        int mid=0;
+        while(left<=right){
+            mid = (right+left)/2;
+            int n=x/mid;
+            if(n>mid)
+                left=mid+1;
+            if(n==mid)
+                return mid;
+            if(n<mid)
+                right=mid-1;
+        }
+        return right;   
+    }
+}
 </script>
 </section>
 <footer>

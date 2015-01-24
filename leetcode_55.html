@@ -34,15 +34,28 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
-<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+		<h2>Jump Game</h2>
+		<p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
+		<p>Each element in the array represents your maximum jump length at that position.</p>
+		<p>Determine if you are able to reach the last index.</p>
+		<p>For example:</p>
+		<pre>A = [2,3,1,1,4], return true.
 
+A = [3,2,1,0,4], return false.</pre>
+		<a href="https://oj.leetcode.com/problems/jump-game/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public boolean canJump(int[] A) {
+        int pos=0;
+        if(A.length==0 || A.length==1)
+            return true;
+        for(int i=0;i<A.length && i<=pos;i++)
+            pos = A[i]+i>pos?A[i]+i:pos;
+        if(pos>=A.length-1)
+            return true;
+        return false;
+    }
+}
 </script>
 </section>
 <footer>

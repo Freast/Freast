@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Next Permutation</h2>
+		<p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+		<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+		<p>The replacement must be in-place, do not allocate extra memory.</p>
+		<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p>
+		<pre>1,2,3 → 1,3,2
+3,2,1 → 1,2,3
+1,1,5 → 1,5,1</pre>	
+		<a href="https://oj.leetcode.com/problems/next-permutation/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public void nextPermutation(int[] num) {
+        int len=num.length;
+        if(len <= 1)
+            return;
+        int i,j,k;
+        i=-1;
+        j=len;
+        for(k=0;k<len-1;k++){
+            if(num[k+1]>num[k])
+                i=k;
+        }
+        if(i == -1){
+            for(k=0;k<len/2;k++){
+                int tmp = num[k];
+                num[k]=num[len-1-k];
+                num[len-1-k]=tmp;
+            }
+            return;
+        }
+        for(k=len-1;k>=0;k--){
+            if(num[k] > num[i]){
+                j=k;
+                break;
+            }
+        }
+        if(j==len)  
+            return;
+        int tmp=num[i];
+        num[i]=num[j];
+        num[j]=tmp;
+        for(k=i+1;k<len;k++){
+            for(int n=k+1;n<len;n++){
+                if(num[n] < num[k]){
+                    int temp=num[n];
+                    num[n]=num[k];
+                    num[k]=temp;
+                }
+            }
+        }
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

@@ -34,15 +34,45 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>String to Integer (atoi)</h2>
+		<p>Implement atoi to convert a string to an integer.</p>
+		<h4>Hint: </h4><p>Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases</p>
+		<h4>Notes: </h4><p>It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
+		<a href="https://oj.leetcode.com/problems/string-to-integer-atoi/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int atoi(String str) {
+        double result=0;
+        int i=0;
+        char flag='+';
+        
+        if(str==null || str.length()<1)
+            return 0;
+        str=str.trim();
+        if(str.charAt(0) == '+')
+        {
+            i++;
+        }
+        if (str.charAt(0) == '-')
+        {
+            flag='-';
+            i++;
+        }
+        
+        while(i<str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9'){
+            result = result * 10 + str.charAt(i) - '0';
+            i++;
+        }
+        if(flag == '-')
+            result = -result;
+        if(result > Integer.MAX_VALUE)
+            return Integer.MAX_VALUE;
+        if(result < Integer.MIN_VALUE)
+            return Integer.MIN_VALUE;
+        return (int)result;
+        
+    }
+}
 </script>
 </section>
 <footer>

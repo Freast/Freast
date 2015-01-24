@@ -34,15 +34,41 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Permutations</h2>
+		<p>Given a collection of numbers, return all possible permutations.</p>
+		<p>For example,</p>
+		<p>[1,2,3] have the following permutations:</p>
+		<p>[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].</p>
+		<a href="https://oj.leetcode.com/problems/permutations/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+class Solution {
+public:
+    vector<vector<int> > permute(vector<int> &num) {
+        int n=num.size();
+        vector<vector<int>> res;
+        if(n<=1){
+            res.push_back(num);
+            return res;
+        }
+        
+        vector<vector<int>> post;
+        vector<int> tmp;
+        vector<int> curr;
+        for(int i=0;i<n;i++){
+            curr = num;
+            curr.erase(curr.begin()+i);
+            post = permute(curr);
+            
+            for(int j=0;j<post.size();j++){
+                tmp = post[j];
+                tmp.insert(tmp.begin(),num[i]);
+                res.push_back(tmp);
+            }
+        }
+        return res;
+            
+    }
+};
 </script>
 </section>
 <footer>

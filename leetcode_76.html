@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Minimum Window Substring</h2>
+		<p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
+		<p>For example,</p>
+		<p>S = "ADOBECODEBANC"</p>
+		<p>T = "ABC"</p>
+		<p>Minimum window is "BANC".</p>
+		<h4>Note:</h4><p>If there is no such window in S that covers all characters in T, return the emtpy string "".</p>
+		<p>If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.</p>
+		<a href="https://oj.leetcode.com/problems/minimum-window-substring/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public String minWindow(String S, String T) {
+        int begin, end, minBegin ,minEnd, minSize=0;
+        int[] needFind=new int[256];
+        int[] hasFind=new int[256];
+        
+        
+        if(S.length() == 0 || T.length()==0)
+            return "";
+        
+        for(int i=0;i<256;i++){
+            needFind[i]=0;
+            hasFind[i]=0;
+        }
+        for(int i=0;i<T.length();i++){
+            needFind[T.charAt(i)]++;
+        }
+        int count=0;
+        begin =0;
+        end=0;
+        minBegin=0;
+        minEnd=T.length()-1;
+        minSize=Integer.MAX_VALUE;
+        for(end=0;end<S.length();end++){
+            if(needFind[S.charAt(end)] == 0)
+                continue;
+            hasFind[S.charAt(end)]++;
+            if(hasFind[S.charAt(end)] <= needFind[S.charAt(end)]){
+                count++;
+            }
+            if(count == T.length()){
+                while(begin <= end){
+                    if(hasFind[S.charAt(begin)] ==0){
+                        begin++;
+                        continue;
+                    }
+                    if(hasFind[S.charAt(begin)] > needFind[S.charAt(begin)]){
+                        
+                        hasFind[S.charAt(begin)]--;
+                        begin++;
+                        continue;
+                    } else 
+                        break;
+                }
+                if(minSize > end-begin+1){
+                    minSize = end-begin+1;
+                    minBegin = begin;
+                    minEnd=end;
+                }
+            }
+        }
+        
+        if(minSize==Integer.MAX_VALUE)
+            return "";
+        else 
+            return S.substring(minBegin,minEnd+1);
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

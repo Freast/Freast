@@ -34,15 +34,32 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Best Time to Buy and Sell Stock II</h2>
+		<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+		<p>Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+		<a href="https://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        int len=prices.size();
+        if(len==0)
+            return 0;
+        int minP=prices[0], profit=0,maxP=prices[0];
+        for(int i=1;i<len;i++){
+            if(prices[i]>prices[i-1]){
+                maxP=prices[i];
+                if(i==len-1)
+                    profit+=(maxP-minP);
+            }
+            else {
+                profit+=(maxP-minP);
+                minP=maxP=prices[i];
+            }
+        }
+        return profit;
+    }
+};
 </script>
 </section>
 <footer>

@@ -34,15 +34,56 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Roman to Integer</h2>
+		<p>Given a roman numeral, convert it to an integer.</p>
+		<p>Given a roman numeral, convert it to an integer.</p>
+		<a href="https://oj.leetcode.com/problems/roman-to-integer/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int romanToInt(String s) {
+        int result=0;
+        int[] rel = new int[2];
+        char c;
+        for(int i=0;i<s.length();i++){
+            rel[0] = rel[1]=0;
+            int sum=0;
+            for(int j=0;j<2 && i+j <s.length();j++){
+                c=s.charAt(i+j);
+                if(c == 'I'){
+                    rel[j]=1;
+                }
+                if(c == 'V'){
+                    rel[j]=5;
+                }
+                if(c=='X'){
+                    rel[j]=10;
+                }
+                if(c=='L'){
+                    rel[j]=50;
+                }
+                if(c=='C'){
+                    rel[j]=100;
+                }
+                if(c=='D'){
+                    rel[j]=500;
+                }
+                if(c=='M'){
+                    rel[j]=1000;
+                }
+            }
+            if(rel[0]<rel[1]){
+                sum=rel[1]-rel[0];
+                i++;   
+            }
+            else{ 
+                sum=rel[0];
+            
+            }
+            result += sum;
+        }
+        return result;
+    }
+}
 </script>
 </section>
 <footer>

@@ -34,15 +34,32 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Jump Game II</h2>
+		<p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
+		<p>Each element in the array represents your maximum jump length at that position.</p>
+		<p>Your goal is to reach the last index in the minimum number of jumps.</p>
+		<p>For example:</p>
+		<p>Given array A = [2,3,1,1,4]</p>
+		<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)</p>
+		<a href="https://oj.leetcode.com/problems/jump-game-ii/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int jump(int[] A) {
+        if(A.length<2 || A==null)
+            return 0;
+        int step = 0;
+        int curMax = 0, lastMax = 0;
+        for(int i=0;i<A.length;i++){
+            if(lastMax<i){
+                step++;
+                lastMax=curMax;
+            }
+            curMax=Math.max(curMax, i+A[i]);
+            
+        }
+        return step;
+    }
+}
 </script>
 </section>
 <footer>

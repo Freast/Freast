@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Substring with Concatenation of All Words</h2>
+		<p>You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.</p>
+		<p>For example, given:</p>
+		<p><b>S: </b>"barfoothefoobarman"</p>
+		<p><b>L: </b>["foo", "bar"]</p>
+		<p>You should return the indices: [0,9].</p>
+		<a href="https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+public class Solution {
+    public List<Integer> findSubstring(String S, String[] L) {
+        if(S==null || L==null)
+            return null;
+        int wordNum=L.length;
+        int wordL=L[0].length();
+        HashMap<String, Integer> dic = new HashMap<String, Integer>();
+        for (int i=0;i<L.length;i++){
+            Integer old=dic.get(L[i]);
+            if(old==null)
+                dic.put(L[i],1);
+            else
+                dic.put(L[i],old+1);
+        }
+        HashMap<String, Integer> real= new HashMap<String, Integer>();
+        List<Integer> res=new ArrayList<Integer>();
+        for (int i=0;i<S.length()-wordL*wordNum+1;i++){
+            real.clear();
+            int j, k=0;
+            for (j=0;j<wordL * wordNum;j+=wordL){
+                String word = S.substring(i+j, i+j+wordL);
+                if(dic.containsKey(word)){
+                    Integer old = real.get(word);
+                    if(old==null)
+                        real.put(word, 1);
+                    else
+                        real.put(word, old +1);
+                    if (real.get(word)>dic.get(word))
+                        break;
+                    k++;
+                }
+            }
+            if(k==wordNum)
+                res.add(i);
+        }
+        return res;
+    }
+}
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

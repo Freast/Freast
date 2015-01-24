@@ -34,15 +34,38 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Longest Valid Parentheses</h2>
+		<p>Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.</p>
+		<p>For "(()", the longest valid parentheses substring is "()", which has length = 2.</p>
+		<p>Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.</p>
+		<a href="https://oj.leetcode.com/problems/longest-valid-parentheses/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int longestValidParentheses(String s) {
+        int len = s.length();
+        int[] dp = new int[len];
+        for(int i=0;i<len;i++){
+            dp[i]=0;
+        }
+        int max = 0;
+        for(int i=len-2;i>=0;i--){
+            if(s.charAt(i)=='('){
+                int j=i+1+dp[i+1];
+                if(j<len && s.charAt(j)==')'){
+                    dp[i]=dp[i+1]+2;
+                    if(j+1<len){
+                        dp[i]+=dp[j+1];
+                    }
+                }
+                
+            }
+            if(max<dp[i])
+                max=dp[i];
+        }
+        
+        return max;
+    }
+}
 </script>
 </section>
 <footer>

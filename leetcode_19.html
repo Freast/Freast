@@ -34,15 +34,52 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Remove Nth Node From End of List</h2>
+		<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+		<p>For example,</p>
+		<pre>Given linked list: 1->2->3->4->5, and n = 2.
+   After removing the second node from the end, the linked list becomes 1->2->3->5.</pre>
+		<h4>Note:<h4><p>Given n will always be valid.</p><p>Try to do this in one pass.</p>
+		<a href="https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode tmp = head, result, pre;
+        int i=1, count=0;
+        if(head == null)
+            return head;
+        while(tmp != null){
+            count++;
+            tmp=tmp.next;
+        }
+        count=count-n+1;
+        if(count==1)
+        {
+            head=head.next;
+            return head;
+        }
+        pre=head;
+        while(i<count){
+            i++;
+            if(i==count){
+                pre.next=pre.next.next;    
+            }
+            pre=pre.next;
+        }
+        return head;
+    }
+}
 </script>
 </section>
 <footer>

@@ -34,15 +34,48 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Binary Tree Maximum Path Sum</h2>
+		<p>Given a binary tree, find the maximum path sum.</p>
+		<p>The path may start and end at any node in the tree.</p>
+		<p>For example:</p>
+		<p>Given the below binary tree,</p>
+		<pre>       1
+      / \
+     2   3</pre>
+		<p>Return 6.</p>
+		<a href="https://oj.leetcode.com/problems/binary-tree-maximum-path-sum/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxPathSum(TreeNode *root) {
+        maxPath(root);
+        return maxlen;
+    }
+    int maxlen=INT_MIN;
+    int maxPath(TreeNode *root){
+        if(root==NULL)
+            return 0;
+        else {
+            int a=maxPath(root->left);
+            int b=maxPath(root->right);
+            int value = root->val;
+            value+=max(a,0);
+            value+=max(b,0);
+            if(value>maxlen)
+                maxlen=value;
+            return max(root->val, max(root->val+a, root->val+b));
+        }
+    }
+};
 </script>
 </section>
 <footer>

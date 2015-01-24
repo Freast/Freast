@@ -34,15 +34,58 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Insertion Sort List</h2>
+		<p>Sort a linked list using insertion sort.</p>
+		<a href="https://oj.leetcode.com/problems/insertion-sort-list/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        ListNode node = head;
+        if (head == null)
+            return head;
+        ListNode tmp = null;
+        int count = 0;
+        
+        while(node != null){
+            
+            tmp = node;
+            node = node.next;
+            ListNode node2=head, pre=null;
+            tmp.next=null;
+            for(int i=0;i<count;i++){
+                if(node2.val > tmp.val){
+                    if(pre == null){
+                        tmp.next = node2;
+                        head = tmp;
+                    } else {
+                        tmp.next=node2;
+                        pre.next = tmp;
+                    }
+                    break;
+                }
+                if(i == count-1){
+                    node2.next = tmp;
+                    break;
+                }
+                pre = node2;
+                node2=node2.next;
+            }
+            count++;
+        }
+        return head;
+    }
+}
 </script>
 </section>
 <footer>

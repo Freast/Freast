@@ -34,15 +34,20 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Single Number</h2>
+		<p>Given an array of integers, every element appears twice except for one. Find that single one.</p>
+		<h4>Note:</h4><p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+		<a href="https://oj.leetcode.com/problems/single-number/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int singleNumber(int[] A) {
+        int result=0;
+        for(int i=0;i<A.length;i++){
+            result = result ^ A[i];
+        }
+        return result;
+    }
+}
 </script>
 </section>
 <footer>

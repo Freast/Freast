@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Word Ladder II</h2>
+		<p>Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:</p>
+		<ol>
+			<li>Only one letter can be changed at a time</li>
+			<li>Each intermediate word must exist in the dictionary</li>
+		</ol>
+		<p>For example,</p>
+		<p>Given:</p>
+		<pre>start = "hit"
+end = "cog"
+dict = ["hot","dot","dog","lot","log"]</pre>
+		<p>Return</p>
+		<pre>  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]</pre>
+		<h4>Note:</h4>
+		<ul>
+			<li>All words have the same length.</li>
+			<li>All words contain only lowercase alphabetic characters.</li>
+		</ul>
+		<a href="https://oj.leetcode.com/problems/word-ladder-ii/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+typedef pair<string, string> PAIR;
+
+class Solution {
+public:
+    vector<vector<string>> findLadders(string start, string end, unordered_set<string> &dict) {
+        vector<vector<string>> res;
+        unordered_multimap<string, string> edges;
+        unordered_set<string> previousNodes;
+        vector<unordered_set<string>> nodeLevel(2);
+        int curr = 0;
+        nodeLevel[curr].insert(start);
+        unordered_set<string>::iterator it;
+        while(!nodeLevel[curr].empty() && nodeLevel[curr].count(end)==0){
+            for(it=nodeLevel[curr].begin();it!=nodeLevel[curr].end();it++){
+                for(int i=0;i<it->size();i++){
+                    string node(*it);
+                    for(node[i]='a';node[i]<'z';node[i]++){
+                        if(node == end){
+                            nodeLevel[!curr].insert(node);
+                            edges.insert(PAIR(*it, end));
+                            break;
+                        }
+                        if(previousNodes.count(node)||nodeLevel[curr].count(node)||!dict.count(node))
+                            continue;
+                        edges.insert(PAIR(*it, node));
+                        nodeLevel[!curr].insert(node);
+                    }
+                }
+                previousNodes.insert(*it);
+            }
+            
+            nodeLevel[curr].clear();
+            curr=!curr;
+        }
+        previousNodes.clear();
+        if(nodeLevel[curr].empty())
+            return res;
+        vector<string> vec;
+        getSolutions(start, end, edges, res, vec);
+        return res;   
+    }
+    
+    void getSolutions(string &word, string &end, unordered_multimap<string, string> &edges, vector<vector<string>> &res, vector<string> &vec){
+        if(word == end)
+        {
+            res.push_back(vec);
+            res.back().push_back(end);
+            return;
+        }
+        pair<unordered_multimap<string,string>::iterator, unordered_multimap<string,string>::iterator> ret;
+        ret=edges.equal_range(word);
+        while(ret.first != ret.second){
+            vec.push_back(ret.first->first);
+            getSolutions(ret.first->second,end,edges,res,vec);
+            vec.pop_back();
+            ret.first++;
+        }
+    }
+    
+};
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

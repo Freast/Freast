@@ -34,15 +34,28 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Container With Most Water</h2>
+		<p>Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). </p>
+		<p>Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+		<p>Note: You may not slant the container..</p>
+		<a href="https://oj.leetcode.com/problems/container-with-most-water/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int maxArea(int[] height) {
+        int left=0, right=height.length-1, res=0;
+        
+        while(left<right){
+            int tmp=Math.min(height[left], height[right])*(right-left);
+            if (tmp > res)
+                res=tmp;
+            if(height[left]<height[right])
+                left++;
+            else 
+                right--;
+        }
+        return res;
+    }
+}
 </script>
 </section>
 <footer>

@@ -34,15 +34,54 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Search in Rotated Sorted Array</h2>
+		<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+		<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+		<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+		<p>You may assume no duplicate exists in the array.</p>
+		<a href="https://oj.leetcode.com/problems/search-in-rotated-sorted-array/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int search(int[] A, int target) {
+        int len = A.length;
+        return findTarget(0,len-1,A,target);
+    }
+    
+    public int findTarget(int start, int end, int[] A, int target){
+        if(start==end)
+            if(A[end]==target)
+                return end;
+            else return -1;
+            
+        if(start>end)
+            return -1;
+        if(A[start] <=A[end] ){
+            while(start<=end){
+                int mid = (start+end)/2;
+                if(A[mid]==target)
+                    return mid;
+                else if(A[mid] >target){
+                    end=mid-1;
+                } else 
+                    start = mid+1;
+            }
+        } else {
+            int mid = (start+end)/2;
+            if(A[mid]==target)
+                return mid;
+            if(start<=end){
+                int a = findTarget(mid+1, end, A, target);
+                int b=findTarget(start, mid-1, A, target);
+                if(a==-1 && b==-1)
+                    return -1;
+                else 
+                    return a==-1?b:a;
+            }
+        }
+        return -1;
+        
+    }
+}
 </script>
 </section>
 <footer>

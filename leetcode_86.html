@@ -34,15 +34,51 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Partition List</h2>
+		<p>Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.</p>
+		<p>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+		<p>For example,</p>
+		<p>Given 1->4->3->2->5->2 and x = 3,</p>
+		<p>return 1->2->2->4->3->5.</p>
+		<a href="https://oj.leetcode.com/problems/partition-list/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode partition(ListNode head, int x) {
+        ListNode list1 = new ListNode(0), list2=new ListNode(0);
+        ListNode tmp, tmp1 = list1, tmp2=list2;
+        tmp=head;
+        if(head==null)
+            return null;
+        
+        while(tmp!=null){
+            if(tmp.val < x){
+                tmp1.next=tmp;
+                tmp1=tmp1.next;
+            }
+            else {
+                tmp2.next=tmp;
+                tmp2=tmp2.next;
+            }
+            tmp=tmp.next;
+        }
+        tmp1.next=list2.next;
+        tmp2.next=null;
+        head=list1.next;
+        return head;
+        
+    }
+}
 </script>
 </section>
 <footer>

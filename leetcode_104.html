@@ -34,15 +34,30 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Maximum Depth of Binary Tree </h2>
+		<p>Given a binary tree, find its maximum depth.</p>
+		<p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+		<a href="https://oj.leetcode.com/problems/maximum-depth-of-binary-tree/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root ==null)
+            return 0;
+        int left,right;
+        left=maxDepth(root.left);
+        right=maxDepth(root.right);
+        return Math.max(left,right)+1;
+    }
+}
 </script>
 </section>
 <footer>

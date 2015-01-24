@@ -34,15 +34,48 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
-<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+		<h2>Symmetric Tree</h2>
+		<p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
+		<p>For example, this binary tree is symmetric:</p>
+		<pre>    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3</pre>
 
+		<p>But the following is not:</p>
+		<pre>    1
+   / \
+  2   2
+   \   \
+   3    3</pre>
+		<h4>Note:</h4><p>Bonus points if you could solve it both recursively and iteratively.</p>
+		<p>confused what "{1,#,2,3}" means? <a href="https://oj.leetcode.com/problems/symmetric-tree/#">> read more on how binary tree is serialized on OJ.</a></p>
+		<a href="https://oj.leetcode.com/problems/symmetric-tree/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null)
+            return true;
+        return isSymmetric(root.left, root.right);
+    }
+    public boolean isSymmetric(TreeNode left, TreeNode right){
+        if(left==null && right == null)
+            return true;
+        if (left ==null && right !=null || left !=null && right ==null || left.val!=right.val)
+            return false;
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
+}
 </script>
 </section>
 <footer>

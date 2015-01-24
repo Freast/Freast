@@ -34,15 +34,36 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Reverse Integer</h2>
+		<p>Reverse digits of an integer.</p>
+		<h4>Example1: </h4><p>x = 123, return 321</p>
+		<h4>Example2: </h4><p>x = -123, return -321</p>
+		<a href="https://oj.leetcode.com/problems/reverse-integer/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int reverse(int x) {
+        boolean flag = true;
+        double result=0;
+        int p;
+        if(x<0){
+            flag = false;
+            x=0-x;
+        }
+        p=x;
+        while(p>0){
+            
+            int a;
+            a = p % 10;
+            result = result * 10 + a;
+            p/=10;
+            if(result > Integer.MAX_VALUE)
+                return 0;
+        }
+        if(!flag)
+            result = 0-result;
+        return (int)result;
+    }
+}
 </script>
 </section>
 <footer>

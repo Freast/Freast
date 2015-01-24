@@ -34,15 +34,33 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>ZigZag Conversion</h2>
+		<p>The string <code>"PAYPALISHIRING"</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+		<pre>P   A   H   N
+A P L S I I G
+Y   I   R</pre>
+		<p>And then read line by line: <code>"PAHNAPLSIIGYIR"</code></p>
+		<p>Write the code that will take a string and make this conversion given a number of rows:</p>
+		<pre>string convert(string text, int nRows);</pre>
+		<p><code>convert("PAYPALISHIRING", 3)</code> should return <code>"PAHNAPLSIIGYIR"</code>.<p>
+		<a href="https://oj.leetcode.com/problems/zigzag-conversion/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public String convert(String s, int nRows) {
+        if(s == null || s.length() == 0 || nRows <= 1)
+            return s;
+        int gap=2*nRows-2;
+        StringBuilder result=new StringBuilder();
+        for(int i=0;i<nRows;i++){
+            for(int j=i;j<s.length();j+=gap){
+                result.append(s.charAt(j));
+                if(i!=0 && i!=nRows-1&&j+gap-i*2<s.length())
+                    result.append(s.charAt(j+gap-i*2));
+            }
+        }
+        return result.toString();
+    }
+}
 </script>
 </section>
 <footer>

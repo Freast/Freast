@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>Scramble String</h2>
+		<p>Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.</p>
+		<p>Below is one possible representation of s1 = "great":</p>
+		<pre>    great
+   /    \
+  gr    eat
+ / \    /  \
+g   r  e   at
+           / \
+          a   t</pre>
+
+		<p>To scramble the string, we may choose any non-leaf node and swap its two children.</p>
+		<p>For example, if we choose the node "gr" and swap its two children, it produces a scrambled string "rgeat".</p>
+		<pre>	rgeat
+   /    \
+  rg    eat
+ / \    /  \
+r   g  e   at
+           / \
+          a   t</pre>
+		<p>We say that "rgeat" is a scrambled string of "great".</p>
+		<p>Similarly, if we continue to swap the children of nodes "eat" and "at", it produces a scrambled string "rgtae".</p>
+		<pre>    rgtae
+   /    \
+  rg    tae
+ / \    /  \
+r   g  ta  e
+       / \
+      t   a</pre>
+		<p>We say that "rgtae" is a scrambled string of "great".</p>
+		<p>Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1.</p>
+		<a href="https://oj.leetcode.com/problems/scramble-string/">Solve this problem<<</a>
+<script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+class Solution {
+public:
+    bool isScramble(string s1, string s2) {
+        if(s1.length() == 0 || s2.length()==0)
+            return true;
+        if(s1.length() == 1 && (s1 == s2))
+            return true;
+        if(s1.length()!=s2.length())
+            return false;
+        int length = s1.length();
+        bool f[length][length][length];
+        memset(f,false,sizeof(bool)*length*length*length);
+        for(int k=1;k<=length;k++){
+            for(int i=0;i<=length-k;i++){
+                for(int j=0;j<=length-k;j++){
+                    if(k==1){
+                        f[i][j][k] = (s1[i]==s2[j]);
+                    } else {
+                        for(int l=1;l<k;l++){
+                            if((f[i][j][l] &&f[i+l][j+l][k-l]) || (f[i][j+k-l][l] && f[i+l][j][k-l])){
+                                f[i][j][k]=true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return f[0][0][length];
+    }
+};
+</script>
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>

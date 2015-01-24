@@ -34,15 +34,45 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Linked List Cycle II</h2>
+		<p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+		<p>Follow up:</p>
+		<p>Can you solve it without using extra space?</p>
+		<a href="https://oj.leetcode.com/problems/linked-list-cycle-ii/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast, slow;
+        fast=head;
+        slow=head;
+        while(true){
+            if(fast==null || fast.next==null)
+                return null;
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow)
+                break;
+        }
+        slow=head;
+        while(slow!=fast)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return slow;
+    }
+}
 </script>
 </section>
 <footer>

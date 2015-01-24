@@ -34,15 +34,49 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Maximal Rectangle</h2>
+		<p>Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing all ones and return its area.</p>
+		<a href="https://oj.leetcode.com/problems/maximal-rectangle/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix.length == 0)
+            return 0;
+        int res=0;
+        int row=matrix.length, col = matrix[0].length;
+        int[][] f = new int[row][col];
+        for(int i=0;i<row;i++)
+            f[i][0] = matrix[i][0] - '0';
+            
+        for(int i=0;i<row;i++){
+            for(int j=1;j<col;j++){
+                if(matrix[i][j] =='0')
+                    f[i][j] = 0;
+                else 
+                    f[i][j] = f[i][j-1]+1;
+            }
+        }
+        
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                int k = i;
+                int width = Integer.MAX_VALUE;
+                
+                while(k>=0){
+                    if(f[k][j] == 0)
+                        break;
+                        
+                    width = Math.min(width, f[k][j]);
+                    res = Math.max(res, width*(i-k+1));
+                    
+                    k--;
+                }
+            }
+        }
+        return res;
+    }
+}
 </script>
 </section>
 <footer>

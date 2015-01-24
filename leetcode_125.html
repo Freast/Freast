@@ -34,15 +34,51 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h2>Valid Palindrome</h2>
+		<p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+		<p>For example,</p>
+		<p>"A man, a plan, a canal: Panama" is a palindrome.</p>
+		<p>"race a car" is not a palindrome.</p>
+		<h4>Note:</h4><p>Have you consider that the string might be empty? This is a good question to ask during an interview.</p>
+		<p>For the purpose of this problem, we define empty string as valid palindrome.</p>
+		<a href="https://oj.leetcode.com/problems/valid-palindrome/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if(s==null)
+            return false;
+        char[] t=s.toCharArray();
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if((t[i]>='a'&&t[i]<='z') || (t[i]>='A'&&t[i]<='Z') || (t[i]>='0'&&t[i]<='9'))
+            {
+                if(t[i]>='A'&&t[i]<='Z')
+                    t[i] =(char)(t[i]-'A'+'a');
+            }
+            else{
+                i++;
+                continue;
+            }
+            if((t[j]>='a'&&t[j]<='z') || (t[j]>='A'&&t[j]<='Z')|| (t[j]>='0'&&t[j]<='9'))
+            {
+                if(t[j]>='A'&&t[j]<='Z')
+                    t[j] =(char)(t[j]-'A'+'a');
+            }
+            else{
+                j--;
+                continue;
+            }
+            if(t[i]==t[j]){
+                i++;
+                j--;
+            }
+            else 
+                return false;
+            
+        }
+        return true;
+    }
+}
 </script>
 </section>
 <footer>

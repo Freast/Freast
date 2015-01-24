@@ -34,15 +34,40 @@
     <div class="wrapper">
 
 	<section>
-		<h2></h2>
+		<h2>Best Time to Buy and Sell Stock III</h2>
+		<p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
+		<p>Design an algorithm to find the maximum profit. You may complete at most two transactions.</p>
 		<p></p>
 		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4><p></p>
-		<a href="">Solve this problem<<</a>
+		<h4>Note:</h4><p>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</p>
+		<a href="https://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/">Solve this problem<<</a>
 <script type="syntaxhighlighter" class="brush: java;"><![CDATA[
-
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        int len=prices.size();
+        
+        if(len<=1)  
+            return 0;
+        int l[len], r[len], profit=0;
+        memset(l, 0, sizeof(int)*len);
+        memset(r, 0, sizeof(int)*len);
+        int minP=prices[0];
+        for(int i=1;i<len;i++){
+            l[i]=max(prices[i]-minP, l[i-1]);
+            minP=min(minP, prices[i]);
+        }
+        int maxP = prices[len-1];
+        for(int i=len-2;i>=0;i--){
+            r[i]=max(r[i+1], maxP-prices[i]);
+            maxP=max(maxP, prices[i]);
+        }
+        for(int i=0;i<len;i++){
+            profit = max(profit, l[i]+r[i]);
+        }
+        return profit;
+    }
+};
 </script>
 </section>
 <footer>
