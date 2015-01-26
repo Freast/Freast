@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!--sytax highlighter-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Freast.GitHub.io by Freast</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+	
+</head>
+
+<body>
+	<header>
+	    <a href="./index.html"><h1>Freast.GitHub.io</h1></a>
+    </header>
+	<div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/Freast" class="button fork"><strong>View On GitHub</strong></a>
+    </div><!-- end banner -->
+    <div class="wrapper">
+
+	<section>
+		<h2>github与我的静态博客</h2></br>
+		<h3>Github上的静态网页</h3>
+		<p>参考了阮一峰博客上的这篇<a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门</a>。我使用github Pages这种方法，网页的主题使用github现有的主题，并在上面修改和添加内容。</p>
+		<h3>SyntaxHighlighter代码高亮</h3>
+		<p>一个初级coder的博客上面也不会有什么东西，暂时能用到的就是一个代码高亮插件了。</p>
+		<p>我用的是SyntaxHighlighter，版本号3.0.83。在头部加上如下的文件和js函数</p>
+		<pre><span><</span>script type="text/javascript" src="scripts/shCore.js"></script>
+<span><</span>script type="text/javascript" src="scripts/shBrushJava.js"></script>
+<span><</span>link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+<span><</span>script type="text/javascript">SyntaxHighlighter.all();</script></pre>
+		<p>在引用的代码处加上</p>
+		<pre><span><</span>script type="syntaxhighlighter" class="brush: java;"><![CDATA[
+	//ur code
+		<span><</span>/script></pre>
+		<p>以上class的参数表示高亮java的代码，若是C++，则需要加上</p>
+		<pre><span><</span>script type="text/javascript" src="scripts/shBrushCpp.js"></script></pre>
+		<p>相应的，引用代码时，用的class需要改成</p>
+		<pre><span><</span>script type="syntaxhighlighter" class="brush: c++;"></pre>
+		<p>与java和c++类似，其他语言也有相应的语法高亮文件可供使用</p>		
+</section>
+<footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+</html>
