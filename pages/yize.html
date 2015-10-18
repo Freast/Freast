@@ -12,12 +12,11 @@
             $.get("../common/footer.html", function(data){
                 $(".wrapper").after(data);
             });
-            $("#content").css("display", "block");
+            
         });
     </script>
 </head>
 <body>
-
 <section id="content" style="display: none;">
      <h3>一则</h3>
             <p>
@@ -39,6 +38,8 @@
                 他回复“你说的是我的桌子还是电脑桌面”<br>
                 好冷<br>
             </p>
+     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+     <script>$("#content").css("display", "block");</script>
 </section>
 </body>
 

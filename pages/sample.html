@@ -12,14 +12,15 @@
             $.get("../common/footer.html", function(data){
                 $(".wrapper").after(data);
             });
-            $("#content").css("display", "block");
+            
         });
     </script>
 </head>
 <body>
-
 <section id="content" style="display: none;">
      add content here
+     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+     <script>$("#content").css("display", "block");</script>
 </section>
 </body>
 
