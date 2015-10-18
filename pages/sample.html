@@ -5,20 +5,20 @@
     <script>
         $(function(){
             $("#header").load("../common/header.html");
-            $(".banner").load("../common/header2.html");
-            $("#footer").load("../common/footer.html");
+            $("#content").wrap("<div></div>").parent().addClass("wrapper");
+            $.get("../common/header2.html", function(data){
+                $(".wrapper").before(data);    
+            });
+            $.get("../common/footer.html", function(data){
+                $(".wrapper").after(data);
+            });
         });
     </script>
-
 </head>
 <body>
-<div class="banner"></div>
-<div class="wrapper">
-    <section>
 
-        add contents or code here
-    </section>
-</div>
-<footer id="footer"></footer>
+<section id="content">
+    add contents or code here
+</section>
 </body>
 

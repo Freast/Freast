@@ -5,17 +5,20 @@
     <script>
         $(function(){
             $("#header").load("../common/header.html");
-            $(".banner").load("../common/header2.html");
-            $("#footer").load("../common/footer.html");
+            $("#content").wrap("<div></div>").parent().addClass("wrapper");
+            $.get("../common/header2.html", function(data){
+                $(".wrapper").before(data);    
+            });
+            $.get("../common/footer.html", function(data){
+                $(".wrapper").after(data);
+            });
         });
     </script>
-
 </head>
 <body>
-<div class="banner"></div>
-<div class="wrapper">
-    <section>
-        <h3>一则</h3>
+
+<section id="content">
+     <h3>一则</h3>
             <p>
                 每天都会买水果当饭吃，在公司连吃几天水果<br>
                 猜测旁边卖农产的老板忍不住要跟我宣传他们微店，想着“逮到潜在用户一只”<br>
@@ -35,8 +38,6 @@
                 他回复“你说的是我的桌子还是电脑桌面”<br>
                 好冷<br>
             </p>
-    </section>
-</div>
-<footer id="footer"></footer>
+</section>
 </body>
 
