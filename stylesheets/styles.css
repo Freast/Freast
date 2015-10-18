@@ -557,7 +557,8 @@ a small {
 }
 
 ul {
-  list-style-image: url("../images/bullet.png");
+  /*list-style-image: url("../images/bullet.png");*/
+    list-style-type: none;
 }
 
 strong {
@@ -1009,4 +1010,12 @@ footer {
     bottom: auto;
     width: auto;
   }
+}
+
+ul li a img{
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-right: 5px;
+    padding-top: 3px;
 }
