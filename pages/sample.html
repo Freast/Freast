@@ -3,24 +3,23 @@
 <head id="header">
     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
     <script>
-        $(function(){
-            $("#header").load("../common/header.html");
-            $("#content").wrap("<div></div>").parent().addClass("wrapper");
-            $.get("../common/header2.html", function(data){
-                $(".wrapper").before(data);    
-            });
-            $.get("../common/footer.html", function(data){
-                $(".wrapper").after(data);
-            });
-            
+    $(function(){
+        $("#header").load("../common/header.html");
+        $("#content").wrap("<div></div>").parent().addClass("wrapper");
+        $.get("../common/header2.html", function(data){
+            $(".wrapper").before(data);    
         });
+        $.get("../common/footer.html", function(data){
+            $(".wrapper").after(data);
+        });   
+        $("#content").css("display", "block");
+    });
     </script>
 </head>
 <body>
 <section id="content" style="display: none;">
-     add content here
-     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
-     <script>$("#content").css("display", "block");</script>
+    <h3>add title here</h3>
+    <p>add content here</p>   
 </section>
 </body>
 
