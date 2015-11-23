@@ -693,7 +693,8 @@ header p {
   left: 0;
   right: 50%;
   height: 50px;
-  margin-right: -382px;
+    width: 100%;;
+  /*margin-right: -382px;*/
   position: fixed;
   top: 0px;
   padding-top: 0px;
@@ -788,7 +789,7 @@ header p {
   position: absolute;
   height: 36px;
   width: 36px;
-  right: 7px;
+  right: 262px;
   top: 7px;
   display: block;
   background: url(../images/octocat-logo.png);

@@ -1,25 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head id="header">
-    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
-    <script>
-    $(function(){
-        $("#header").load("../common/header.html");
-        $("#content").wrap("<div></div>").parent().addClass("wrapper");
-        $.get("../common/header2.html", function(data){
-            $(".wrapper").before(data);    
-        });
-        $.get("../common/footer.html", function(data){
-            $(".wrapper").after(data);
-        });   
-        $("#content").css("display", "block");
-    });
-    </script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript" src="../scripts/shCore.js"></script>
+    <script type="text/javascript" src="../scripts/shBrushJava.js"></script>
+    <link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!--sytax highlighter-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>littlechi.GitHub.io by Dongpeng</title>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../scripts/jquery-1.11.2.min.js"></script>
+    <script src="../javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
-<section id="content" style="display: none;">
-    <h3>add title here</h3>
-    <p>add content here</p>   
-</section>
+<div id="banner">
+    <span id="logo"></span>
+    <a href="https://github.com/littlechi" class="button fork"><strong>View On GitHub</strong></a>
+</div>
+<div class="wrapper">
+    <section>
+
+        <h3>一则</h3>
+
+        <p>
+            每天都会买水果当饭吃，在公司连吃几天水果<br>
+            猜测旁边卖农产的老板忍不住要跟我宣传他们微店，想着“逮到潜在用户一只”<br>
+            “你苹果多少钱”<br>
+            “一万多”<br>
+            估计他没听清<br>
+            “在哪儿买的”<br>
+            “对面啊，贝塔分期那儿”<br>
+            “哪儿”<br>
+            “贝塔分期，那儿。”我指向对面那家创业公司<br>
+            反应过来他问的是我在吃的苹果<br>
+            “你说的是这个啊”<br>
+            接下来是被那位老板宣传他微店<br><br>
+
+            想起同学发的一张办公室的照片<br>
+            下面有人评论“你的桌面好干净啊”<br>
+            他回复“你说的是我的桌子还是电脑桌面”<br>
+            好冷<br>
+        </p>
+    </section>
+    <footer>
+        <p>
+            <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a>
+            </small>
+        </p>
+    </footer>
+</div>
 </body>
+</html>
+
 
